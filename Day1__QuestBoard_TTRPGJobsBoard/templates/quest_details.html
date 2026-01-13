@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ quest.title }}</h1>
+    <p><strong>Status</strong>: {{ quest.open_or_closed }}</p>
+    <p><strong>Info: </strong>{{ quest.body }}</p>
+    <p><strong>Difficulty: </strong>{{ quest.difficulty }}</p>
+    <p><strong>Reward: </strong>{{ quest.reward }}</p>
+    <p><strong>Created on: </strong>{{ quest.created_on }}</p>
+
+    <a href="{% url 'quest_update_view' quest.pk %}">Edit Quest</a>
+    <a href="{% url 'quest_delete_view' quest.pk %}">Delete Quest</a>
+
+{% endblock content %}

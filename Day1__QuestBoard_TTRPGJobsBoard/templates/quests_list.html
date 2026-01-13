@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+    <div>
+        <a href="{% url 'quest_new_view' %}">New Quest</a>
+    </div>  
+
+    {% for quest in quests %}
+    <div class="card">
+        <a href="{% url 'quest_detail_view' quest.pk %}"><h2>Quest: {{ quest.title }}</h2></a>
+        {% if quest.open_or_closed %}
+            <p>Status: ACTIVE</p>
+        {% else %}
+            <p>Status: CLOSED</p>
+        {% endif %}
+        <p>Status: </p>
+        <p>Description: {{ quest.body }}</p>
+        <ul>
+            <li>Difficulty: {{ quest.difficulty }}</li>
+            <li>Reward: {{ quest.reward }}</li>
+            <li>Created on: {{ quest.created_on }}</li>
+        </ul>
+    </div>   
+    {% endfor %}
+{% endblock content %}
