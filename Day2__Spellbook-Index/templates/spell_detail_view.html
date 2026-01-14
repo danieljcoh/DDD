@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ spell.spell_name|title }}</h2>
+    <h3>Forbidden: {{ spell.spell_is_forbidden }}</h3>
+    <hr>
+    <p>Mana Cost: {{ spell.spell_mana_cost}}</p>
+    <p>Element Type: {{ spell.spell_element_type }}</p>
+    <p>Ingredients: {{ spell.spell_ingredients }}</p>
+    <p> Directions: {{ spell.spell_directions }}</p>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <a href="{% url 'spell_create_view' %}">New Spell</a>
+    <form action="" method="GET">
+        <label for="search">Search: </label>
+        <input type="text" name="search">
+        <input type="submit" value="OK">
+    </form>
+
+    <hr>
+    <ol>
+        {% for spell in spell_list %}
+        <div class="spell">
+            <a href="{% url 'spell_detail_view' spell.pk %}"><li>{{ spell.spell_name }} </li></a>
+        </div>
+        {% endfor %}
+    </ol>
+{% endblock content %}
