@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.urls import reverse_lazy
 
 from .models import Spell
 
@@ -17,7 +18,6 @@ class SpellbookListView(ListView):
             return filtered_query
         return query
     
-
 class SpellbookCreateView(CreateView):
     model = Spell
     template_name = "spell_new.html"
@@ -27,3 +27,11 @@ class SpellbookCreateView(CreateView):
 class SpellbookDetailView(DetailView):
     model = Spell
     template_name = "spell_detail_view.html"
+
+
+class SpellbookUpdateView(UpdateView):
+    model = Spell
+    template_name = "spell_update_view.html"
+    fields = ['spell_name', 'spell_mana_cost', 'spell_element_type', 
+              'spell_ingredients', 'spell_directions', "spell_is_forbidden"]
+    success_url = reverse_lazy("spell_detail_view") # make sure this goes to the proper PK

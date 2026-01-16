@@ -8,4 +8,6 @@
     <p>Element Type: {{ spell.spell_element_type }}</p>
     <p>Ingredients: {{ spell.spell_ingredients }}</p>
     <p> Directions: {{ spell.spell_directions }}</p>
+    <hr>
+    <a href="{% url 'spell_update_view' spell.pk %}">Edit Spell</a>
 {% endblock content %}
