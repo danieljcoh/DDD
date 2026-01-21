@@ -19,7 +19,7 @@ class Spell(models.Model):
     spell_ingredients = models.TextField(blank=True, null=True)
     spell_directions = models.TextField(blank=True, null=True)
     spell_is_forbidden = models.BooleanField(default=False)
-    spell_tags = models.ManyToManyField("Tag.Model", verbose_name=("tags"))
+    spell_tags = models.ManyToManyField("Tag", verbose_name=("tags"))
 
     def __str__(self):
         return self.spell_name

@@ -14,8 +14,10 @@ class SpellbookListView(ListView):
         query = super().get_queryset()
         searched_item = self.request.GET.get("search")
         if searched_item:
-            filtered_query = query.filter(spell_name__icontains=searched_item)
-            return filtered_query
+            tag_filtered_query = query.filter(spell_tags__tag_name__icontains=searched_item)
+        if searched_item:
+            spell_filtered_query = query.filter(spell_name__icontains=searched_item)
+            return spell_filtered_query.union(tag_filtered_query)
         return query
     
 class SpellbookCreateView(CreateView):
