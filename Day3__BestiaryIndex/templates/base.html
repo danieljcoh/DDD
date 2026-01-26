@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Test</title>{% endblock title %}
+</head>
+<body>
+    <header>
+        <a href="{% url "beast_create_view" %}">Create Beast</a>
+        <a href="{% url "beast_list_view" %}">Beast List</a>
+    </header>
+
+    <a href="{% url "beast_list_view" %}"><h1>Beast List</h1></a>
+    {% block content %}{% endblock content %}
+</body>
+</html>

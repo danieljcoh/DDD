@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ beast.name }}</h2>
+    <ul>
+        <li><strong>Location:</strong>{{ beast.found }}</li>
+        <li><strong>Attack Power:</strong>{{ beast.attack_power }}</li>
+        <li><strong>Attack Speed:</strong>{{ beast.attack_speed }}</li>
+        <li><strong>Defense:</strong>{{ beast.defense }}</li>
+        <li><strong>Threat Level:</strong>{{ beast.threat_level }}</li>
+        <li><strong>Legendary:</strong>{{ beast.is_legendary }}</li>
+        <li><strong>Notable Attacks:</strong>{{ beast.notable_attack }}</li>
+        <li><strong>Quirks:</strong>{{ beast.quirky_behavior }}</li>
+    </ul>
+
+    <section>
+        <a href="{% url "beast_update_view" beast.pk %}">Update Beast Info</a>
+        <a href="{% url "beast_delete_view" beast.pk %}">Delete Beast</a>
+    </section>
+{% endblock content %}
