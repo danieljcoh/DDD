@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Detail View</title>{% endblock title %}
+
+{% block content %}
+    <h2>{{ item.name }}</h2>
+    {% if item.holder %}
+        <p>{{ item.name }} is currently checked out by {{ item.holder }}.</p>
+    {% else %}
+        <p>{{ item.name }} is currently in the vault!</p>
+    {% endif %}
+    <p>Valued at: {{ item.value }}</p>
+{% endblock content %}

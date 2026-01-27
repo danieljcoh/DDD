@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "base.css" %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Document</title>{% endblock title %}
+</head>
+<body>
+    <header>
+        <a href="{% url "home" %}">Home</a>
+        <a href="{% url "item_list_view" %}">Items</a>
+        <a href="{% url "character_list_view" %}">Characters</a>
+    </header>
+    {% block content %}{% endblock content %}
+</body>
+</html>

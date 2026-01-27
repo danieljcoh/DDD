@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Update View</title>{% endblock title %}
+
+{% block content %}
+    <h2>{{ character.player_character_name}} || {{ character.player_name }}</h2>
+    {% if character.items.all %}
+        <h3>Items: </h3>
+        <ul>
+            {% for item in character.items.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>The Character currently has no items!</h3>
+    {% endif %}
+{% endblock content %}
