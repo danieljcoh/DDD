@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Bounty List</title>{% endblock title %}
+
+{% block content %}
+
+    <h1>About Bounty</h1>
+    <h2>{{ bounty.title }}</h2>
+    <p>{{ bounty.description }}</p>
+    <p>Reward: {{ bounty.reward_amount }}</p>
+
+{% endblock content %}

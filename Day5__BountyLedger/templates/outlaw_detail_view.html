@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Bounty List</title>{% endblock title %}
+
+{% block content %}
+
+    <h1>About {{ outlaw.player_character_name }}</h1>
+    <h2>{{ outlaw.player_charactername }}</h2>
+    <p>{{ outlaw.player_name }}</p>
+    <p>Pocket Change: {{ outlaw.total_gold }}</p>
+
+    <a href="{% url "outlaw_update_view" outlaw.pk %}">Update the Outlaw</a>
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Bounty List</title>{% endblock title %}
+
+{% block content %}
+
+    <h1>All Bounty's</h1>
+
+    <a href="{% url "bounty_create_view" %}">Create a new Bounty</a>
+
+    {% for bounty in bounty_list %}
+        <div class="bounty">
+            <a href="{% url "bounty_update_view" bounty.pk %}"><h2>{{ bounty.title }}</h2></a>
+            {% if bounty.rewarded_to %}
+                <p>The bounty is CLOSED.</p>
+                <p>The reward amount of {{ bounty.reward_amount }} was awared to {{ bounty.rewarded_to }}</p>
+            {% else %}
+                <p>The bounty is OPEN.</p>
+                <p>Reward: {{ bounty.reward_amount }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock content %}

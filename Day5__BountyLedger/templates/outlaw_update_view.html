@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Bounty List</title>{% endblock title %}
+
+{% block content %}
+
+    <h1>Update an Outlaw</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update Outlaw">
+    </form>
+
+{% endblock content %}
