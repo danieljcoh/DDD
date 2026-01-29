@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <h3>Encounter: {{ encounter.encounter_name }}.</h3>
+    {% if encounter.party %}
+        <p>Party: {{ encounter.party }}</p>
+    {% else %}
+        <p>This encounter is not associated with a Party.</p>
+    {% endif %}
+    
+    <hr>
+
+    {% comment %} {% if encounter.entries %}
+        <h3>Entries in Encounter: </h3>
+        <ul>
+            {% for entry in encounter.entries %}
+                <li>{{ entry.monster }} x{{ entry.quantity }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endcomment %}
+    
+
+    <a href="{% url "encounter_update_view" encounter.pk %}">Update encounter?</a>
+{% endblock content %}

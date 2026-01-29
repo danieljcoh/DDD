@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <h2>Update {{ encounter.name }}?</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <input type="submit" value="Update Encounter">
+    </form>
+{% endblock content %}

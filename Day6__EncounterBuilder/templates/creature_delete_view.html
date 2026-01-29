@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <h2>Delete the creature: {{ creature.name }}?</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Creature">
+    </form>
+{% endblock content %}

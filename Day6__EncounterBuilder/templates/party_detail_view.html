@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <h3>A look into the {{ party.name }} party.</h3>
+    <p>Level: {{ party.level }}</p>
+    <p>Size of party: {{ party.size }}</p>
+    <a href="{% url "party_update_view" party.pk %}">Update party?</a>
+{% endblock content %}

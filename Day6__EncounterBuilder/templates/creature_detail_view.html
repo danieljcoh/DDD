@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <h3>Creature: {{ creature.name }}.</h3>
+    <p>Threat Level: {{ creature.threat_points }}</p>
+    <a href="{% url "creature_update_view" creature.pk %}">Update creature?</a>
+{% endblock content %}

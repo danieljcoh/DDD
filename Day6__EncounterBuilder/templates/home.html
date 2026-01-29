@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Home</title>{% endblock title %}
+
+{% block content %}
+
+    <a href="{% url "character_list_view" %}">Character List</a>
+    <a href="{% url "creature_list_view" %}">Creature List</a>
+    <a href="{% url "party_list_view" %}">Party List</a>
+    <a href="{% url "encounter_list_view" %}">Encounter List</a>
+    <a href="{% url "encounterEntry_list_view" %}">EncounterEntry List</a>
+
+{% endblock content %}

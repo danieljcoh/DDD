@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <a href="{% url "encounter_create_view" %}">Create a new encounter</a>
+    <ul>
+        {% for encounter in encounter_list %}
+            <li>Encounter: <a href="{% url "encounter_detail_view" encounter.pk %}">{{ encounter.encounter_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

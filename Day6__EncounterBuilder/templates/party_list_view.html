@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <a href="{% url "party_create_view" %}">Create a new party</a>
+    <ul>
+        {% for party in party_list %}
+            <li><a href="{% url "party_detail_view" party.pk %}">{{ party.name}}.</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

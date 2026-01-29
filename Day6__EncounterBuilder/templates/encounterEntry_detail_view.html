@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}<title>TITLE</title>{% endblock title %}
+
+{% block content %}
+    <h3>Encounter: {{ encounterentry.encounter.name }}.</h3>
+    
+    <h3>Creatures in Encounter: </h3>
+    <ul>
+        {% for creature in encounterentry_list %}
+            <li>{{ creature.name }} x{{ creature.quantity }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url "encounter_update_view" encounter.pk %}">Update encounter?</a>
+{% endblock content %}
