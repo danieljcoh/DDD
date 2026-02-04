@@ -152,7 +152,6 @@ class EncounterDeleteView(DeleteView):
 class EncounterEntryCreateView(CreateView):
     model = EncounterEntry
     template_name = "encounterEntry_create_view.html"
-    context_object_name = "encounter_entry"
     fields = ["encounter", "creature", "quantity"]
     
     def get_success_url(self):
@@ -160,17 +159,14 @@ class EncounterEntryCreateView(CreateView):
     
 class EncounterEntryListView(ListView):
     model = EncounterEntry
-    context_object_name = "encounter_entry"
     template_name = "encounterEntry_list_view.html"
 
 class EncounterEntryDetailView(DetailView):
     model = EncounterEntry
-    context_object_name = "encounter_entry"
     template_name = "encounterEntry_detail_view.html"
 
 class EncounterEntryUpdateView(UpdateView):
     model = EncounterEntry
-    context_object_name = "encounter_entry"
     template_name = "encounterEntry_update_view.html"
     fields = ["encounter", "creature", "quantity"]
     
@@ -178,7 +174,6 @@ class EncounterEntryUpdateView(UpdateView):
         return reverse_lazy("encounterEntry_detail_view", kwargs={"pk": self.object.pk})
     
 class EncounterEntryDeleteView(DeleteView):
-    context_object_name = "encounter_entry"
     model = EncounterEntry
     template_name = "encounterEntry_delete_view.html"
     

@@ -31,14 +31,14 @@ class Encounter(models.Model):
     def __str__(self):
         return self.encounter_name
     
-    def total_treat(self):
+    def total_threat(self):
         return sum(entry.creature.threat_points * entry.quantity for entry in self.entries.all())
     
 
 class EncounterEntry(models.Model):
-    encounter = models.ForeignKey("Encounter", related_name="entries", on_delete=models.CASCADE)
-    creature = models.ForeignKey("Creature", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+    encounter = models.ForeignKey("Encounter", related_name="entries", null=True, blank=True, on_delete=models.CASCADE)
+    creature = models.ForeignKey("Creature", null=True, blank=True, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.creature} x{self.quantity}"

@@ -11,16 +11,27 @@
     {% endif %}
     
     <hr>
+    
 
-    {% comment %} {% if encounter.entries %}
+    {% if encounter.entries %}
         <h3>Entries in Encounter: </h3>
         <ul>
-            {% for entry in encounter.entries %}
-                <li>{{ entry.monster }} x{{ entry.quantity }}</li>
+            {% for entry in encounter.entries.all %}
+                <li>{{ entry.creature }} x{{ entry.quantity }}</li>
             {% endfor %}
         </ul>
-    {% endif %} {% endcomment %}
+    {% endif %}
     
+    {% if encounter.total_threat < 25 %}
+        <p>Total threat level: EASY</p>
+    {% elif encounter.total_threat < 50 %}
+        <p>Total threat level: FAIR</p>
+    {% elif encounter.total_threat < 100 %}
+        <p>Total threat level: HARD</p>
+    {% else %}
+        <p>Total threat level: DEADLY</p>
+    {% endif %}
+    <p>Total threat level: {{ encounter.total_threat }}</p>
 
     <a href="{% url "encounter_update_view" encounter.pk %}">Update encounter?</a>
 {% endblock content %}

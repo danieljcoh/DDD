@@ -9,8 +9,8 @@
     </ul>
     {{ debug }}
     <ul>
-        {% for entry in encounter_entry %}
-            <li><a href="{% url "encounterEntry_detail_view" entry.pk %}">{{ entry.encounter.name }}</a></li>
+        {% for entry in encounterentry_list %}
+            <li><a href="{% url "encounterEntry_detail_view" entry.pk %}">{{ entry.creature.name }} x {{ entry.quantity }}</a>, is a part of {{ entry.encounter.encounter_name }}</li>
         {% endfor %}
     </ul>
 {% endblock content %}
