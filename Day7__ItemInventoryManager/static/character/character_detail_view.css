@@ -1,0 +1,16 @@
+.character-detail-section {
+    font-size: 24px;
+    margin: 100px;
+}
+
+.character-detail-p {
+    font-size: 48px;
+}
+
+.one {
+    color: darkgoldenrod;
+}
+
+.two {
+    color: rgb(121, 89, 8);
+}

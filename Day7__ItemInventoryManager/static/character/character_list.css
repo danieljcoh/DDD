@@ -1,0 +1,26 @@
+#title-lg {
+    font-size: 48px;
+}
+
+.character-list li a {
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(173, 0, 0);
+}
+
+.character-list li a:link {
+    color: aqua;
+}
+
+.character-list li a:visited {
+    color: rgb(33, 131, 0);
+}
+
+.character-list li a:hover,
+a:focus {
+    color: #0056b3;
+    /* Darker blue on hover/focus */
+    text-decoration: underline;
+    /* Add underline back on hover/focus for emphasis */
+}

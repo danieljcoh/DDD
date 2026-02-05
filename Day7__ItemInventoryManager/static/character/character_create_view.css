@@ -1,0 +1,33 @@
+.create-character-div {
+    font-size: 24px;
+
+}
+
+.create-character-div p {
+    /* Ensures each field-label-input pair is a block */
+    display: flex;
+    align-items: center;
+    /* Vertically aligns label and input */
+    margin-bottom: 10px;
+    /* Spacing between fields */
+}
+
+.create-character-div label {
+    /* Set a fixed width for all labels to align inputs */
+    width: 350px;
+    margin-right: 20px;
+    /* Space between label and input */
+    text-align: right;
+    /* Align labels to the right for a clean look */
+}
+
+.create-character-div input,
+.create-character-div select,
+.create-character-div textarea {
+    /* Make all input elements the same width */
+    flex: 1;
+    /* This will make inputs take up the remaining space evenly */
+    padding: 5px;
+    border: 1px solid #2c2c2c;
+    border-radius: 4px;
+}

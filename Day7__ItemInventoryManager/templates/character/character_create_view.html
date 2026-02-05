@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create Character{% endblock title %}
+
+{% block extra_css_files %}
+    <link rel="stylesheet" href="{% static "character/character_create_view.css" %}">
+{% endblock extra_css_files %}
+
+{% block content %}
+    <div class="create-character-div">
+        <h2>Create a new character</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save Character">
+        </form>
+    </div>
+{% endblock content %}

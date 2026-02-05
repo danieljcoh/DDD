@@ -1,0 +1,24 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block extra_css_files %}
+    <link rel="stylesheet" href="{% static "character/character_list.css" %}">
+{% endblock extra_css_files %}
+
+{% block title %}Character List{% endblock title %}
+
+{% block header %}
+    <a href="{% url "character_list_view" %}">Home</a>
+    <a href="{% url "character_create_view" %}">Create Character</a>
+{% endblock header %}
+
+{% block content %}
+    <div class="character-list">
+        <h2 id="title-lg">Characters</h2>
+        <ul>
+            {% for character in character_list %}
+                <li><a href="{% url "character_detail_view" character.pk %}">{{ character.player_character_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
