@@ -4,15 +4,15 @@
 
 {% block content %}
 
-    <h2>Update {{ character.player_character_name }}?</h2>
+    <h2>Update {{ item.item_name }}?</h2>
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Update Character">
+        <input type="submit" value="Update Item">
     </form>
 
     <hr>
 
-    <a href="{% url "character_delete_view" character.pk %}">Delete Character?</a>
+    <a href="{% url "item_delete_view" item.pk %}">Delete Item?</a>
 
 {% endblock content %}

@@ -21,9 +21,10 @@ class Item(models.Model):
 
 
 class TransferLog(models.Model):
-    transfer_from = models.ForeignKey("Character", related_name="transfers", on_delete=models.PROTECT) #protect where items have been if characters are deleted.
-    transfer_to = models.ForeignKey("Character", on_delete=models.PROTECT)
+    transfer_from = models.ForeignKey("Character", related_name="transfers", on_delete=models.PROTECT, null=True, blank=True) #protect where items have been if characters are deleted.
+    transfer_to = models.ForeignKey("Character", on_delete=models.PROTECT, null=True, blank=True)
     item_transferred = models.ForeignKey("Item", on_delete=models.PROTECT)
+    transfer_created_at = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
 
 
     # ADD VALIDATION IF THE ITEM EVEN BELONGS TO THE PERSON and then it removes the item
@@ -35,3 +36,6 @@ class TransferLog(models.Model):
     
     def __str__(self):
         return self.transfer_set_name()
+    
+    class Meta:
+        ordering = ["-transfer_created_at"]

@@ -5,19 +5,19 @@
     <link rel="stylesheet" href="{% static "character/character_list.css" %}">
 {% endblock extra_css_files %}
 
-{% block title %}Character List{% endblock title %}
+{% block title %}Item List{% endblock title %}
 
 {% block header %}
     <a href="{% url "home" %}">Home</a>
-    <a href="{% url "character_create_view" %}">Create Character</a>
+    <a href="{% url "item_create_view" %}">Create Item</a>
 {% endblock header %}
 
 {% block content %}
     <div class="character-list">
-        <h2 id="title-lg">Characters</h2>
+        <h2 id="title-lg">Items</h2>
         <ul>
-            {% for character in character_list %}
-                <li><a href="{% url "character_detail_view" character.pk %}">{{ character.player_character_name }}</a></li>
+            {% for item in item_list %}
+                <li><a href="{% url "item_detail_view" item.pk %}">{{ item.item_name }}</a></li>
             {% endfor %}
         </ul>
     </div>

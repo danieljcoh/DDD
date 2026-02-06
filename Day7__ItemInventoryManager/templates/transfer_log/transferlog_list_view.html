@@ -1,0 +1,19 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block extra_css_files %}
+    <link rel="stylesheet" href="{% static "character/character_list.css" %}">
+{% endblock extra_css_files %}
+
+{% block title %}Transfer Log{% endblock title %}
+
+{% block content %}
+    <div class="character-list">
+        <h2 id="title-lg">Transfers</h2>
+        <ul>
+            {% for transfer in transferlog_list %}
+                <li>{{ transfer.item_transferred }} || FROM {{ transfer.transfer_from|default:"Bank" }} ➡️ TO {{ transfer.transfer_to|default:"Bank" }} at {{ transfer.transfer_created_at|time:"H:i:A" }}</li>
+            {% endfor %}
+        </ul>
+    </div> 
+{% endblock content %}

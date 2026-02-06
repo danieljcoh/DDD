@@ -1,14 +1,14 @@
 {% extends "../base.html" %}
 
-{% block title %}Delete Character{% endblock title %}
+{% block title %}Delete Item{% endblock title %}
 
 {% block content %}
 
-    <h2>Delete {{ character.player_character_name }}?</h2>
+    <h2>Delete {{ item.item_name }}?</h2>
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Delete Character">
+        <input type="submit" value="Delete item">
     </form>
 
 {% endblock content %}

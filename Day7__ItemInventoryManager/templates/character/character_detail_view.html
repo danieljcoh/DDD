@@ -11,12 +11,12 @@
 {% block content %}
 
     <section class="character-detail-section">
-        <div>
+        <div class="player-name">
             <p class="character-detail-p one">Player Name: {{character.first_name}} {{ character.last_name }}</p>
             <p class="character-detail-p two">Player Character: {{ character.player_character_name }}</p>
         </div>
 
-        <div>
+        <div class="player-items">
             <p>Items {{ character.player_character_name }} has...</p>
             <ul>
                 {% for item in character.items.all %}
@@ -24,6 +24,15 @@
                 {% endfor %}
             </ul>
         </div>
+    </section>
+
+    <section class="hr-section">
+        <hr class="middle-line">
+    </section>  
+
+    <section class="links">
+        <a href="{% url "character_update_view" character.pk %}">Update {{ character.player_character_name }}?</a>
+        <a href="{% url "character_delete_view" character.pk %}">Delete {{ character.player_character_name }}?</a>
     </section>
 
 {% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %}{{ item.item_name }}{% endblock title %}
+
+{% block extra_css_files %}
+    <link rel="stylesheet" href="{% static "character/character_detail_view.css" %}">
+{% endblock extra_css_files %}
+
+
+{% block content %}
+
+    <section class="character-detail-section">
+        <div class="player-name">
+            <p class="item-detail-p one">Item Name: {{item.item_name}}</p>
+            <p class="item-detail-p two">Item Description: {{ item.item_description }}</p>
+        </div>
+
+        <div class="player-items">
+            {% if item.owner %}
+                <p>{{ item.item_name|title }} currently belongs to... <a href="{% url "character_detail_view" item.owner.pk %}">{{ item.owner }}</a></p>
+            {% else %}
+                <p>The item is in the bank!</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="hr-section">
+        <hr class="middle-line">
+    </section>  
+
+    <section class="links">
+        <a href="{% url "item_update_view" item.pk %}">Update {{ item.item_name }}?</a>
+        <a href="{% url "item_delete_view" item.pk %}">Delete {{ item.item_name }}?</a>
+    </section>
+
+{% endblock content %}

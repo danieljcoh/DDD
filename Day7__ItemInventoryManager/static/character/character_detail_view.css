@@ -1,10 +1,21 @@
 .character-detail-section {
+    text-align: left;
     font-size: 24px;
-    margin: 100px;
+    margin: 0 auto;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50rem;
 }
 
 .character-detail-p {
     font-size: 48px;
+}
+
+.item-detail-p {
+    font-size: 36px;
 }
 
 .one {
@@ -13,4 +24,27 @@
 
 .two {
     color: rgb(121, 89, 8);
+}
+
+.hr-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+hr {
+    border: dotted;
+    height: 5px;
+    width: 50%;
+    background-color: #333;
+    margin: 75px 0;
+
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    margin: 0 auto;
 }
