@@ -10,6 +10,8 @@
 {% block header %}
     <a href="{% url "home" %}">Home</a>
     <a href="{% url "item_create_view" %}">Create Item</a>
+    <a href="{% url "item_list_view"%}?content=all">All Items ⭐️</a>
+    <a href="{% url "item_list_view"%}?content=bank">Bank Items 🏦</a>
 {% endblock header %}
 
 {% block content %}

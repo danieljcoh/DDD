@@ -4,6 +4,8 @@ from .views import CharacterCreateView, CharacterListView, CharacterDetailView, 
 from .views import homepage_view
 from .views import ItemCreateView, ItemListView, ItemDetailView, ItemUpdateView, ItemDeleteView
 from .views import TransferlogListView
+from .views import LoginView, LogoutView
+
 
 urlpatterns = [
     path("", homepage_view, name="home"),
@@ -20,4 +22,7 @@ urlpatterns = [
     path("item/delete/<int:pk>/", ItemDeleteView.as_view(), name="item_delete_view"),
 
     path("transfer/", TransferlogListView.as_view(), name="transferlog_list_view"), 
+
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ]

@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import *
 
@@ -9,8 +12,14 @@ from .models import *
 def homepage_view(request):
     return render(request, "home.html")
 
+class LoginView(auth_views.LoginView):
+    template_name = "registration/login.html"
 
-class CharacterCreateView(CreateView):
+class LogoutView(auth_views.LogoutView):
+    pass
+
+
+class CharacterCreateView(LoginRequiredMixin, CreateView):
     model = Character
     template_name = "character/character_create_view.html"
     fields = ["first_name", "last_name", "player_character_name"]
@@ -27,21 +36,21 @@ class CharacterDetailView(DetailView):
     template_name = "character/character_detail_view.html"
 
 
-class CharacterUpdateView(UpdateView):
+class CharacterUpdateView(LoginRequiredMixin, UpdateView):
     model = Character
     template_name = "character/character_update_view.html"
     fields = ["first_name", "last_name", "player_character_name"]
     success_url = reverse_lazy("character_list_view")
 
 
-class CharacterDeleteView(DeleteView):
+class CharacterDeleteView(LoginRequiredMixin, DeleteView):
     model = Character
     template_name = "character/character_delete_view.html"
     success_url = reverse_lazy("character_list_view")
 
 
 
-class ItemCreateView(CreateView):
+class ItemCreateView(LoginRequiredMixin, CreateView):
     model = Item
     template_name = "item/item_create_view.html"
     fields = ["item_name", "item_description", "owner"]
@@ -52,13 +61,22 @@ class ItemListView(ListView):
     model = Item
     template_name = "item/item_list_view.html"
 
+    def get_queryset(self):
+        query = super().get_queryset()
+        content = self.request.GET.get("content")
+        if content == "all":
+            return query
+        elif content == "bank":
+            return query.filter(owner=None)
+        return query
+
 
 class ItemDetailView(DetailView):
     model = Item
     template_name = "item/item_detail_view.html"
 
 
-class ItemUpdateView(UpdateView):
+class ItemUpdateView(LoginRequiredMixin, UpdateView):
     model = Item
     template_name = "item/item_update_view.html"
     fields = ["item_name", "item_description", "owner"]
@@ -80,7 +98,7 @@ class ItemUpdateView(UpdateView):
         return response
 
 
-class ItemDeleteView(DeleteView):
+class ItemDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
     template_name = "item/item_delete_view.html"
     success_url = reverse_lazy("item_list_view")
