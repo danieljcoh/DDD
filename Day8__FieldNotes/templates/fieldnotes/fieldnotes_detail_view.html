@@ -1,0 +1,30 @@
+{% extends "../base.html" %}
+
+{% block title %}FieldNote Details{% endblock title %}
+
+
+{% block content %}
+
+    <h2>{{ fieldnote.title }}</h2>
+    <p>Scout: {{ fieldnote.author }}</p>
+    <p>Info: {{ fieldnote.information_text }}</p>
+    <p>Confirmations: {{ fieldnote.confirmations.count }}</p>
+    {% if fieldnote.is_public %}
+        <p>PUBLIC PUBLIC</p>
+    {% else %}
+        <p>private</p>
+    {% endif %}
+
+    {% if user.is_authenticated and fieldnote.is_public %}
+        <form action="{% url "fieldnotes_toggle_confirm" fieldnote.author.username fieldnote.slug %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Confirm / Unconfirm</button>
+        </form>
+    {% endif %}
+
+    {% if fieldnote.author == request.user %}
+        <a href="{% url "fieldnotes_update_view" fieldnote.author.username fieldnote.slug %}">Update FieldNote</a>
+        <a href="{% url "fieldnotes_delete_view" fieldnote.author.username fieldnote.slug %}">Delete FieldNote</a>
+    {% endif %}
+
+{% endblock content %}

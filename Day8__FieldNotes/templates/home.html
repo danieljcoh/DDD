@@ -5,5 +5,17 @@
 {% block content %}
 
     <h1>Home</h1>
+    {% if user.is_authenticated %}
+        {% for fieldnote in fieldnote_list %}
+        <div>
+            <a href="{% url "fieldnotes_detail_view" fieldnote.author.username fieldnote.slug %}">{{ fieldnote.title}} </a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div>
+            <h2>FieldNotes App</h2>
+            <p>You are not logged in. Log in to see your own notes or go to the FieldNotes tab to see public notes.</p>
+        </div>
+    {% endif %}
 
 {% endblock content %}

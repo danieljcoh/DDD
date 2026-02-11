@@ -15,7 +15,7 @@
         {% if user.is_authenticated %}
             <a href="{% url "home" %}">Home</a>
             <a href="{% url "fieldnotes_list_view" %}">FieldNotes</a>
-            <form  style="display:inline;" action="{% url "logout" %}" method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit">Log out</button></form>
+            <form style="display:inline;" action="{% url "logout" %}" method="post"> {% csrf_token %} <button type="submit">Log out</button></form>
         {% else %}
             <a href="{% url "signup" %}">Sign up</a>    
             <a href="{% url "login" %}">Log in</a>
