@@ -45,7 +45,7 @@ class FieldNotesListView(ListView):
     template_name = "fieldnotes/fieldnotes_list_view.html"
 
     def get_queryset(self):
-        return FieldNote.objects.filter(is_public=True)
+        return FieldNote.objects.filter(is_public=True).order_by("-created_at")
 
 class FieldNotesCreateView(LoginRequiredMixin, CreateView):
     model = FieldNote

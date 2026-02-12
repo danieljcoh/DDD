@@ -1,0 +1,49 @@
+.header {
+    font-size: 1.2em;
+    margin-bottom: 2em;
+}
+
+.field-note-class {
+    border: #618B4A 5px solid;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-size: 2em;
+    border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+    .field-note-class {
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .field-note-class {
+        font-size: 1rem;
+    }
+}
+
+.field-note-class:hover {
+    background-color: #40531B;
+    color: #AFBC88;
+}
+
+.field-note-class h3 {
+    padding: 5px 10px;
+    margin: 0;
+}
+
+.field-note-class p {
+    font-size: .6em;
+    padding: 0 8px;
+}
+
+a {
+    text-decoration: none;
+    color: #AFBC88;
+}
+
+a:hover {
+    text-decoration: underline;
+}

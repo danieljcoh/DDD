@@ -1,16 +1,25 @@
 {% extends "../base.html" %}
+{% load static %}
+
+{% block extra_css_files %}
+    <link rel="stylesheet" href="{% static "fieldnotes/fieldnote_list_view.css" %}">
+{% endblock extra_css_files %}
 
 {% block title %}Field Notes List{% endblock title %}
 
 {% block header %}
+    <div class="header">
     {% if user.is_authenticated %}
         <a href="{% url "home" %}">Home</a>
         <a href="{% url "fieldnotes_create_view" %}">Create FieldNote</a>
         <form  style="display:inline;" action="{% url "logout" %}" method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit">Log out</button></form>
+    </div>
     {% else %}
+    <div class="header">
         <a href="{% url "signup" %}">Sign up</a>    
         <a href="{% url "login" %}">Log in</a>
         <a href="{% url "fieldnotes_list_view" %}">FieldNotes</a>
+    </div>
     {% endif %}
 {% endblock header %}
 
@@ -20,6 +29,8 @@
         <a href="{% url "fieldnotes_detail_view" field_note.author.username field_note.slug %}">
             <div class="field-note-class">
                 <h3>{{ field_note.title }}</h3>
+                <p>Scout: {{ field_note.author }}</p>
+                <p>Confirmations: {{ field_note.confirmations.count }}</p>
             </div>
         </a>
         
