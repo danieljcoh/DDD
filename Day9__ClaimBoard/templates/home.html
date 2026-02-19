@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Claim Board{% endblock title %}
+
+{% block content %}
+
+    <h1>test</h1>
+
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
