@@ -6,6 +6,6 @@ from .models import Task
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ["title", "status", "claimer"]
-
+    prepopulated_fields = {"slug": ("title", )}
 
 admin.site.register(Task, TaskAdmin)

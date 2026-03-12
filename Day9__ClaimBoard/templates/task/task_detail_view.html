@@ -5,7 +5,21 @@
 {% block content %}
 
     <h1>{{ task.title }}</h1>
-    <p>{{ task.type }}</p>
-    <p>{{ task.task_information }}</p>
+    <p><strong>Task Type: </strong>{{ task.task_type }}</p>
+    <p><strong>Information: </strong>{{ task.task_information }}</p>
+    <p>Author: {{ task.author }}</p>
+    <p>Status: {{ task.status }}</p>
+
+    {% if user.is_authenticated and task.author != request.user %}
+        <form action="{% url "task_toggle_claim" task.author.username task.slug %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Claim / Unclaim</button>
+        </form>
+    {% endif %}
+
+    {% if task.author == request.user %}
+        <a href="{% url "task_update_view" task.author.username task.slug %}">Update Task</a>
+        <a href="{% url "task_delete_view" task.author.username task.slug %}">Delete Task</a>
+    {% endif %}
 
 {% endblock content %}

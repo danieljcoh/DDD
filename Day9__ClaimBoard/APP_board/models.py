@@ -6,24 +6,23 @@ from django.urls import reverse
 # Create your models here.
 class Task(models.Model):
     class Type(models.TextChoices):
-        BOUNTY = "Bounty"
-        DELIVERY = "Delivery"
-        SCOUTING_RUN = "Scouting Run"
-        NONE = "None"
+        BOUNTY = "Bounty", "Bounty"
+        DELIVERY = "Delivery", "Delivery"
+        SCOUTING_RUN = "Scouting Run", "Scouting Run"
+        NONE = "None", "None"
 
     class Status(models.TextChoices):
-        POSTED = "Posted"
-        HIDDEN = "Hidden"
-        PUBLIC = "Public and Unclaimed"
-        CLAIMED = "Claimed"
-        COMPLETED = "Completed"
+        DRAFT = "Draft", "Draft"
+        POSTED = "Posted", "Posted"
+        CLAIMED = "Claimed", "Claimed"
+        COMPLETED = "Completed", "Completed"
 
     title = models.CharField(max_length=250)
-    author = models.ForeignKey("User", related_name="created_tasks", on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=220)
+    author = models.ForeignKey(User, related_name="created_tasks", on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=220, unique=True)
     task_information = models.TextField((""))
     task_type = models.CharField(max_length=50, choices=Type, default=Type.NONE, null=True, blank=True)
-    status = models.CharField(max_length=150, choices=Status.choices, default=Status.HIDDEN)
+    status = models.CharField(max_length=150, choices=Status.choices, default=Status.DRAFT)
     claimer = models.ForeignKey(User, related_name="tasks", on_delete=models.PROTECT, null=True, blank=True)
     reward = models.PositiveIntegerField()
     date_created = models.DateTimeField((""), auto_now=False, auto_now_add=True)
@@ -31,23 +30,22 @@ class Task(models.Model):
 
     class Meta:
         ordering = ["-date_created"]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["author", "slug", "pk"],
-                name="unique_slug_per_author"
-            )
-        ]
 
 
     def get_absolute_url(self):
-        return reverse("task_detail_view", kwargs={"username": self.author.username, "slug": self.slug, "pk": self.pk})
+        return reverse("task_detail_view", kwargs={"username": self.author.username, "slug": self.slug})
     
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
-        else:
-            super().save(*args, **kwargs)
+            base = slugify(self.title)
+            slug = base
+            n = 1
+            while Task.objects.filter(slug=slug).exists():
+                n += 1
+                slug = f"{base}-{n}"
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     
     def __str__(self):
@@ -57,4 +55,17 @@ class Task(models.Model):
 
 
 class Claim(models.Model):
-    pass
+    claimer = models.ForeignKey(User, related_name="claimers", on_delete=models.PROTECT)
+    task = models.ForeignKey("Task", related_name="tasks", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["claimer", "task"],
+                name="one_claimer_per_task"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.claimer} claimed {self.task}."
